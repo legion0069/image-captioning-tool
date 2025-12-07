@@ -1,6 +1,7 @@
 from src.config import SAMPLE_IMAGES_DIR
 from src.image_utils import load_image, get_image_size
 from src.preprocessing import preprocess_image, tensor_stats
+from src.feature_extractor import extract_features
 
 def main():
     images = list(SAMPLE_IMAGES_DIR.glob("*.jpg")) + list(SAMPLE_IMAGES_DIR.glob("*.png"))
@@ -19,8 +20,10 @@ def main():
     stats = tensor_stats(tensor)
 
     print("Tensor shape:", stats["shape"])
-    print("Tensor min value:", stats["min"])
-    print("Tensor max value:", stats["max"])
+    print("Tensor value range:", stats["min"], "to", stats["max"])
+
+    features = extract_features(tensor)
+    print("Feature vector shape:", features.shape)
 
 if __name__ == "__main__":
     main()
