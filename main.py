@@ -2,6 +2,7 @@ from src.config import SAMPLE_IMAGES_DIR
 from src.image_utils import load_image, get_image_size
 from src.preprocessing import preprocess_image, tensor_stats
 from src.feature_extractor import extract_features
+from src.caption_generator import generate_basic_caption
 import numpy as np
 
 def main():
@@ -28,7 +29,11 @@ def main():
 
     # Save features
     np.save("image_features.npy", features.numpy())
-    print("Features saved to image_features.npy")
+    print("Features saved.")
+
+    # Generate caption
+    caption = generate_basic_caption(features.numpy())
+    print("Generated Caption:", caption)
 
 if __name__ == "__main__":
     main()
