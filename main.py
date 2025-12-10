@@ -3,6 +3,7 @@ from src.image_utils import load_image, get_image_size
 from src.preprocessing import preprocess_image, tensor_stats
 from src.feature_extractor import extract_features
 from src.caption_generator import generate_basic_caption
+from src.ml_caption_generator import MLCaptionGenerator
 import numpy as np
 
 def main():
@@ -31,9 +32,15 @@ def main():
     np.save("image_features.npy", features.numpy())
     print("Features saved.")
 
-    # Generate caption
-    caption = generate_basic_caption(features.numpy())
-    print("Generated Caption:", caption)
+    # Rule-based caption (fallback)
+    fallback_caption = generate_basic_caption(features.numpy())
+    print("Fallback Caption:", fallback_caption)
+
+    # ML-based caption
+    print("\nGenerating ML Caption...")
+    generator = MLCaptionGenerator()
+    ml_caption = generator.generate_caption(img)
+    print("ML Caption:", ml_caption)
 
 if __name__ == "__main__":
     main()
