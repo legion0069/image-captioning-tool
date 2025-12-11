@@ -24,9 +24,9 @@ from src.ml_caption_generator import MLCaptionGenerator
 # ----------------------
 # Streamlit UI
 # ----------------------
-st.set_page_config(page_title="Image Captioning Demo", layout="centered")
-st.title("AI Image Captioning — Demo")
-st.write("Upload an image and get an ML caption (BLIP) + fallback caption.")
+st.set_page_config(page_title="Image Captioning", layout="centered")
+st.title("AI Image Captioning")
+st.write("Upload an image to generate captions using ML or fallback logic.")
 st.info("The BLIP model downloads on first run; the first response may take longer.")
 
 # File upload
