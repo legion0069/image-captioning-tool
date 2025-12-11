@@ -43,7 +43,7 @@ except Exception as e:
     st.error(f"Could not read image: {e}")
     st.stop()
 
-st.image(img, caption="Uploaded image", use_column_width=True)
+st.image(img, caption="Uploaded image", use_container_width=True)
 st.markdown("---")
 
 # Preprocess / show tensor stats
