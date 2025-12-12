@@ -9,3 +9,5 @@ transformers
 accelerate
 timm
 streamlit
+imageio
+pillow

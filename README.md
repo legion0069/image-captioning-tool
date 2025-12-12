@@ -62,3 +62,9 @@ pip install -r requirements.txt
 
 to run stream lit
 .\.venv\Scripts\streamlit.exe run app/streamlit_app.py
+
+
+## Day 18 — Caching & Demo GIF
+- Features are cached under `data/features/{image_hash}.npy` (auto-created).
+- Thumbnails stored in `data/thumbs/`.
+- Create demo GIF: `python scripts/make_demo_gif.py --input-dir sample_images --output demo.gif`
