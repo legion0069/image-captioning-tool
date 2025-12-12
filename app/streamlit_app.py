@@ -87,15 +87,25 @@ except Exception as e:
     st.error(f"Fallback caption failed: {e}")
 
 # ML caption
+# inside app/streamlit_app.py — replace ML caption block with this snippet
+# (ensure you already have the top-of-file sys.path fix and imports for st, Image, io, np, etc.)
+from src.model_singleton import get_ml_caption_generator
+
+# ... earlier code for upload, preprocess, features, fallback caption ...
+
+# ML caption (behind a button, uses singleton)
 st.subheader("ML Caption (BLIP)")
-with st.spinner("Generating ML caption (may take a moment)..."):
-    try:
-        generator = MLCaptionGenerator()
-        ml_caption = generator.generate_caption(img)
-        st.success("ML caption generated:")
-        st.write(ml_caption)
-    except Exception as e:
-        st.error(f"ML captioning failed: {e}")
+if st.button("Generate ML Caption"):
+    with st.spinner("Loading model (first run may take a minute) and generating caption..."):
+        try:
+            # get singleton model (loads once per process)
+            generator = get_ml_caption_generator()
+            ml_caption = generator.generate_caption(img)
+            st.success("ML caption generated:")
+            st.write(ml_caption)
+        except Exception as e:
+            st.error(f"ML captioning failed: {e}")
+
 
 # Download features as .npy
 st.markdown("---")
