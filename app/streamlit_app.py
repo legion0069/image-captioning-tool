@@ -69,14 +69,28 @@ except Exception as e:
     st.stop()
 
 # Feature extraction
+# Feature extraction (cache-aware)
 st.subheader("Features")
+from src.image_meta import image_hash  # small helper we'll add in Commit 2
+from src.cache_utils import load_features, save_features, has_features
+
 try:
-    features = extract_features(tensor)  # returns a torch.Tensor
-    feat_np = features.cpu().numpy()
+    # compute cache key from temp path
+    key = image_hash(TEMP_PATH)
+    cached = load_features(key)
+    if cached is not None:
+        feat_np = cached
+        st.write("Loaded features from cache.")
+    else:
+        features = extract_features(tensor)  # torch tensor -> features (torch.Tensor)
+        feat_np = features.cpu().numpy()
+        save_features(key, feat_np)
+        st.write("Extracted features and saved to cache.")
     st.write(f"Feature vector shape: `{feat_np.shape}`")
 except Exception as e:
     st.error(f"Feature extraction failed: {e}")
     st.stop()
+
 
 # Fallback caption
 st.subheader("Fallback Caption")
