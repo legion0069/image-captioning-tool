@@ -68,3 +68,15 @@ to run stream lit
 - Features are cached under `data/features/{image_hash}.npy` (auto-created).
 - Thumbnails stored in `data/thumbs/`.
 - Create demo GIF: `python scripts/make_demo_gif.py --input-dir sample_images --output demo.gif`
+
+
+
+
+## 🚀 Live Demo
+👉 https://YOUR-APP-NAME.streamlit.app
+
+Upload an image and get:
+- ML-based caption (BLIP)
+- Fallback caption
+- Feature vector download
+- Image metadata & thumbnail
