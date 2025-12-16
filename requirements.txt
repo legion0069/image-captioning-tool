@@ -11,3 +11,4 @@ timm
 streamlit
 imageio
 pillow
+cachetools
