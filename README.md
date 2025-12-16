@@ -73,7 +73,7 @@ to run stream lit
 
 
 ## 🚀 Live Demo
-👉 https://ai-captioning-by-tejaverukonda.streamlit.app/
+https://ai-captioning-by-tejaverukonda.streamlit.app/
 
 Upload an image and get:
 - ML-based caption (BLIP)
