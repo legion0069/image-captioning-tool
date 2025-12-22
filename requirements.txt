@@ -12,3 +12,6 @@ streamlit
 imageio
 pillow
 cachetools
+fastapi
+uvicorn
+python-multipart
